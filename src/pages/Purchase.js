@@ -83,6 +83,9 @@ const Purchase = () => {
                     <th>Amount</th>
                     <th>Duration</th>
                     <th>End Date</th>
+                    <th>Withdrow</th>
+
+
                   </tr>
                 </thead>
                 <tbody >
@@ -94,6 +97,9 @@ const Purchase = () => {
                         <td>{rowData[0]}</td>
                         <td>{rowData[1]} Days</td>
                         <td>{rowData[3]}</td>
+                        <td><button className='button_withdrow'>Withdrow</button></td>
+
+
                       </tr>
                     ))) : (
                     <tr>

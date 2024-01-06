@@ -1171,7 +1171,7 @@ html body{
 }
 
 .purch.stake-FXST-button{
-  margin-top: 15px!important;
+  margin-top: 19px!important;
 }
 
 .stake-FXST-button{
@@ -1208,3 +1208,43 @@ html body{
     transform: rotate(360deg);
   }
 }
+
+/* width */
+.sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.sidebar::-webkit-scrollbar-track {
+  background: #151718;
+}
+
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+  background: #3f3306;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #3f3306;
+}
+
+ .second_top_card{
+  height: 167px !important
+ }
+
+ .approve_desc{
+  font-size: 14px;
+  font-family: 'Plus Jakarta Sans';
+  color: white;
+ }
+
+ .button_withdrow{
+   background: #947518;
+    color: white;
+    border: navajowhite;
+    height: 36px;
+    width: 100px;
+    border-radius: 6px;
+ }

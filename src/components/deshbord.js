@@ -25,6 +25,7 @@ import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Bars } from "react-loader-spinner";
+// import { isAddress } from 'web3-validator';
 
 const Deshbord = () => {
   const [USDTAmt, setUSDTAmt] = useState("");
@@ -39,9 +40,11 @@ const Deshbord = () => {
   const [referralCode, setReferralCode] = useState("");
   const [BTCprice, setBTCPrice] = useState("");
   const [BNBprice, setBNBPrice] = useState("");
-
-
+  
+  const [ReferralValue, setRefarralValue] = useState("");
   //read functions
+
+
   const address = useAddress();
   const { contract } = useContract(
     "0x59a0A965F6400d493d440c339601E64a19fe409A"
@@ -77,6 +80,19 @@ const Deshbord = () => {
     const { data: indirectChild, isLoading: isIndirectChildLoading } =
     useContractRead(contract, "showAllInDirectChild", [address]);
  
+    const { data: userValid, isLoading: isUserValidLoading } =
+    useContractRead(contract, "userValidation", [ReferralValue]);
+ 
+
+    console.log(userValid)
+
+    const { data: parent, isLoading: isParentLoading } =
+    useContractRead(contract, "parent", [address]);
+ 
+
+    console.log(userValid)
+   
+
 
   //write funcs
   useEffect(() => {
@@ -143,7 +159,7 @@ const Deshbord = () => {
   }, []);
 
   const [amountValue, setAmountValue] = useState("");
-  const [ReferralValue, setRefarralValue] = useState("");
+
   const [durationValue, setDurationValue] = useState("");
 
   const isValidUSDTamount = Number(amountValue) >= 100 || amountValue == "";
@@ -151,9 +167,15 @@ const Deshbord = () => {
   const handleAmountChange = (event) => {
     setAmountValue(event.target.value);
   };
+ 
+   
   const handleReferralChange = (event) => {
-    setRefarralValue(event.target.value);
-  };
+    setRefarralValue(event.target.value); 
+};
+
+ 
+
+
   const handleDurationChange = (event) => {
     setDurationValue(event.target.value);
   };
@@ -162,33 +184,58 @@ const Deshbord = () => {
   const { mutateAsync: stakeTokens, isLoading: isBuyTokensLoading } =
     useContractWrite(contract, "stakeTokens");
 
-  const stakeToken = async () => {
+  const stakeToken = async (userValid) => {
     setBuyTokenLoading(true);
-    try {
-      let usdtAmt = ethers.utils.parseEther(amountValue);
-      const data = await stakeTokens({
-        args: [usdtAmt, durationValue, ReferralValue],
-      });
-      console.info("contract call successs", data);
 
-      toast.success("Tokens Bought Successfully", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    } catch (err) {
-      toast.error("You can not buy more than $1000 in one transaction", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.error("contract call failure", err);
+    if(userValid == true || userValid == undefined){
+    try {
+
+         let ref;
+           if (parent === "0x0000000000000000000000000000000000000000") {
+            ref = ReferralValue;
+           } else {
+            ref = parent;
+           }
+       
+          let usdtAmt = ethers.utils.parseEther(amountValue);
+          const data = await stakeTokens({
+            args: [usdtAmt, durationValue, ref],
+          });
+          console.info("contract call successs", data);
+
+          toast.success("Tokens Bought Successfully", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        } catch (err) {
+          toast.error("Something Went Wrong", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+      console.error("contract call failure", err.Reason);
     } finally {
       setUSDTAmt("");
       setBuyTokenLoading(false);
     }
+  } else{
+    toast.error("Please Enter a Valid Referral Address", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
   };
 
 
 const handleApproveTokensValue = (event)=>{
     setApproveAmt(event.target.value)
 }
+
+
+const handleFormSubmit= (event)=>{
+  event.preventDefault()
+  stakeToken(userValid)
+}
+
+
+
+
  
   return (
     <>
@@ -217,11 +264,13 @@ const handleApproveTokensValue = (event)=>{
                       </span>
                       Stake FXST
                     </h4>
+                    
                     {isValidUSDTamount ? null : (
                       <p className="price-warning-text text-danger text-xs">
                         Minimum 100
                       </p>
                     )}
+                    <form onSubmit={handleFormSubmit}>
                     <div className="purch desktop_button_share">
                       <input
                         value={amountValue}
@@ -245,30 +294,33 @@ const handleApproveTokensValue = (event)=>{
                     </div>
                     <div className="purch desktop_button_share">
                       <input
-                        value={ReferralValue}
+                        required
+                        value={parent !== "0x0000000000000000000000000000000000000000"?  parent : ReferralValue}
                         onChange={handleReferralChange}
                         type="text"
                         placeholder="Enter Referral"
                       />
                     </div>
 
-                    <button
-                      onClick={stakeToken}
+                    <button type="submit"
                       disabled={amountValue < 100}
                       className="purch stake-FXST-button"
                     >
                       Stake
                     </button>
+                    </form>
                   </div>
                 </div>
-                <div className="col-lg-4 mb-3  pr-md-0">
-                  <div className="refarinfo3 refarinfo4 first-card">
+                <div className="col-lg-5 mb-3  pr-md-0">
+                  <div className="refarinfo3 refarinfo4 first-card second_top_card">
                     <h4>
                       <span>
                         <img src={infoicon} alt="puricon" />
                       </span>
                      Approve Tokens
                     </h4> 
+                    <div className="row pr-2">
+                      <div className="col-lg-8 pr-0">
                     <div className="purch desktop_button_share">
                       <input
                         value={approveAmt}
@@ -277,12 +329,18 @@ const handleApproveTokensValue = (event)=>{
                         placeholder="Enter amount in USDT"
                       />
                     </div>
+                    </div>
+                    <div className="col-lg-4 pl-0">
                     <button
                       onClick={approveTokens}
                       className="purch stake-FXST-button"
                     >
                       Approve
                     </button>
+                    </div>
+                    
+                    </div>
+                    <h3 className="approve_desc">Approve USDT to interact with FXST smart contract</h3>
                   </div>
                 </div>
 
