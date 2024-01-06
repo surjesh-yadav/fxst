@@ -1,0 +1,76 @@
+.parchage_main {
+    width: 100%;
+    display: inline-block;
+    min-height: 600px;
+}
+
+.page_title {
+    text-align: left;
+    margin-bottom: 23px;
+}
+
+.page_title h1 {
+    font-weight: bold;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 23px;
+    margin: 0;
+}
+
+.page_title p{
+    margin: 0;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 16px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.table td{
+font-size: 13px;
+font-weight: bold;
+}
+
+.table td, .table th {
+    padding: 0.75rem;
+    vertical-align: middle;
+    font-family: 'Plus Jakarta Sans';
+    border-top: 1px solid #15171a6b;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    background: #947518;
+    border-bottom: 0;
+}
+
+.parchage_table table tr th:first-child {
+    border-radius: 10px 0 0 0;
+  }
+
+  .parchage_table table tr th:last-child {
+    border-radius: 0 10px 0 0;
+  }
+
+
+
+
+  tbody {
+    background: #191919;
+    color: rgb(193, 190, 190);
+    font-family: 'Plus Jakarta Sans';
+    border: 1px solid #313131;
+}
+
+@media only screen and (max-width: 480px) {
+    .parchage_table {
+        overflow: scroll;
+    }
+
+    .page_title {
+        margin-bottom: 5px;
+        border-bottom: 0;
+    }
+}

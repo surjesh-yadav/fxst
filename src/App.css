@@ -1,0 +1,233 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.content button{
+  color: white !important;
+}
+
+body{
+background: #101112! important;
+}
+
+
+@media(min-width:768px){
+  .connect-button-header{
+    position: absolute;
+    right: 0;
+  }
+}
+
+.hr-tag{
+  border-bottom: 1px solid gray;
+  width: 100%;
+} 
+
+
+
+@media(min-width:768px){
+  .padding_right{
+    padding-right:5px;
+  }
+  
+  .padding_left{
+    padding-left: 7px;
+  }
+  .desktop_button_share{
+    display: block;
+    margin: 15px auto;
+  }
+  .mobile_button_share{
+    display: none;
+  }
+  .live-rate-box{
+    min-height: 45px !important;
+    padding: 3px 16px;
+    width: 110px;
+    /* width: 170px; */
+    float: right;
+    position: absolute;
+    border-radius: 5px;
+    right: 230px;
+    top: 12px;
+  }
+  .live-rate-main-col{
+    max-width: 32.7%;
+    padding: 0px
+  }
+  
+}
+@media(max-width:767px){
+  
+  .mobile_button_share{
+    
+    margin: 22px auto;
+  
+  }
+  
+ 
+  .live-rate-box {
+    min-height: 45px !important;
+    padding: 3px 16px;
+    width: 110px;
+    width: 143px;
+    /* float: right; */
+    /* position: absolute; */
+    border-radius: 5px;
+    /* right: 230px; */
+    /* top: 12px; */
+    margin-left: 15px;
+    margin-top: 14px;
+}
+.live-rate-main-col {
+  padding: 0px;
+  max-width: 100%;
+}
+}
+ 
+.live-rate-box p{
+    margin: 0;
+    font-size: 9px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans';
+    margin-top: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.live-rate-box h4{
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 600;  
+    margin-bottom: 5px;
+    font-size: 11px;
+    color: #54f8a6;
+}
+
+
+.live-rate-box span.greenarrow img {
+  position: absolute;
+  width: 15px;
+  right: 16px;
+  top: 17px;
+  transform: rotate(-33deg);
+}
+
+.price-live-rate{
+  font-size: 19px;
+  font-weight: 600;
+  padding-top: 7px;
+}
+
+.live-rate-mainbox{
+  min-height: 109px !important;
+}
+
+.container_main{
+  max-width: 1349px;
+}
+
+
+.cunholder{
+  padding-left: 15px;
+}
+
+@media screen and (min-width: 701px){
+ nav.navbar.navbar-expand-md {
+    display: flex!important;
+    flex-direction: column!important;
+}
+}
+
+#root{
+  max-width: 1600px !important;
+  margin: auto  !important;
+}
+
+
+.navbar-expand-md .navbar-collapse{
+  flex-direction: column !important;
+}
+
+p.price-warning-text.text-danger.text-xs {
+  position: absolute;
+  font-size: 13px;
+  top: 73px;
+  right: 9%;
+}
+
+@media(max-width:767px){
+  p.price-warning-text.text-danger.text-xs {
+    position: absolute;
+    font-size: 13px;
+    top: 86px !important;
+    right: 13% !important;
+  }
+}
+
+
+
+.live-rate-logo{
+  width: 38px;
+  margin-right: 13px;
+}
+
+.other-rate-logo{
+  width: 33px;
+  margin-right: 15px;
+}
+
+.purch.desktop_button_share input , .purch.desktop_button_share select {
+    background: transparent;
+    width: 100%;
+    height: 45px;
+    border: none;
+    padding: 13px;
+    color: white;
+}
+
+.purch.desktop_button_share input:focus-visible, .purch.desktop_button_share select:focus-visible{
+  outline: none;
+}
+
+option{
+  background-color: #1d1e1e;
+}
+
+option:hover{
+  background-color: #1d1e1e;
+}
