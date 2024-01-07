@@ -132,7 +132,7 @@ const originalDate = new Date()
                           <button
                             onClick={()=> withdrawToken(index)}
                             className="button_withdrow"
-                          >  {new Date() < new Date(rowData[3]) ? "Withdrow" : "Locked" }
+                          >  {new Date() > new Date(rowData[3]) ? "Withdrow" : "Locked" }
                           </button>
                         </td>
                       </tr>

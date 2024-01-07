@@ -107,13 +107,13 @@ const Deshbord = () => {
       setApproveTokensLoading(false);
       toast.success("Successfully approved tokens!", {
         position: toast.POSITION.TOP_CENTER,
-        className: "toast-message_custom",
+        className: "toast-message_custom_success",
       });
     } catch (err) {
       setApproveTokensLoading(false);
       toast.error("Approve Failed !", {
         position: toast.POSITION.TOP_CENTER,
-        className: "toast-message_custom",
+        className: "toast-message_custom_error",
       });
       console.error("contract call failure", err);
     } finally {
@@ -172,6 +172,8 @@ const Deshbord = () => {
     [ref]
   );
 
+  console.log(userValid)
+
   //stake Token
   const stakeToken = async () => {
     if (userValid == true) {
@@ -184,12 +186,12 @@ const Deshbord = () => {
         console.info("contract call successs", data);
         toast.success("Tokens Bought Successfully", {
           position: toast.POSITION.TOP_CENTER,
-          className: "toast-message_custom",
+          className: "toast-message_custom_success",
         });
       } catch (err) {
         toast.error("Something Went Wrong", {
           position: toast.POSITION.TOP_CENTER,
-          className: "toast-message_custom",
+          className: "toast-message_custom_error",
         });
         console.error("contract call failure", err.Reason);
       } finally {
@@ -199,7 +201,7 @@ const Deshbord = () => {
     } else {
       toast.error("Please Enter a Valid Referral Address", {
         position: toast.POSITION.TOP_CENTER,
-        className: "toast-message_custom",
+        className: "toast-message_custom_error",
       });
     }
   };
@@ -269,7 +271,7 @@ const Deshbord = () => {
                       </div>
                       <div className="purch desktop_button_share">
                         <input
-                          required
+                          // required
                           value={
                             parent !==
                             "0x0000000000000000000000000000000000000000"

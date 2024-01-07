@@ -1193,12 +1193,12 @@ html body{
   border: 5px solid #FFF;
   border-bottom-color: #ebc803;
   border-radius: 50%;
-
+  z-index: 9999999;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   position: absolute;
   top: 50%;
-  left: 46%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -1280,6 +1280,23 @@ html body{
   text-wrap: nowrap;
   font-size: 14px;
 }
+
+
+.toast-message_custom_error{
+  color: rgb(212, 58, 58) !important;
+  background-color: #1D1E1E !important;
+  border-radius: 10px !important;
+  font-size: 14px;
+}
+
+.toast-message_custom_success{
+  color: rgb(132, 212, 58) !important;
+  background-color: #1D1E1E !important;
+  border-radius: 10px !important;
+  font-size: 14px;
+}
+
+
 
 .date_table{
   text-wrap: nowrap !important;
