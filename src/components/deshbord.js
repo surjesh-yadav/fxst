@@ -364,7 +364,7 @@ const Deshbord = () => {
                     </span>
                     <h4>
                       {" "}
-                      {!isReferralRewardsLoading
+                      {!isReferralRewardsLoading && totalReferralRewards
                         ? parseFloat(
                             ethers.utils.formatEther(
                               totalReferralRewards.toString()
@@ -385,11 +385,16 @@ const Deshbord = () => {
                   </p>
                   <h4>
                     {" "}
-                    {!isrewardLoading
+                    {reward  && 
+                    <>
+                      {!isrewardLoading
                       ? parseFloat(
                           ethers.utils.formatEther(reward.toString())
                         ).toFixed(2)
                       : "0.00"}{" "}
+                      </>
+                     }
+                    
                     FXST
                   </h4>
                 </div>
@@ -422,6 +427,9 @@ const Deshbord = () => {
                     </span>
                   </p>
                   <div className="withbalench">
+                  {directChild ?
+                  
+                   <>
                     <h4>{!isDirectChildLoading ? directChild.length : 0}</h4>
                     <span>/</span>
                     <h4>
@@ -429,6 +437,9 @@ const Deshbord = () => {
                         ? indirectChild.length + directChild.length
                         : 0}
                     </h4>
+                    </> : <h4>0.00</h4>
+                   }
+                    
                   </div>
                 </div>
                 <div className="balance_info">
@@ -439,13 +450,17 @@ const Deshbord = () => {
                     </span>
                     <h4>
                       {" "}
-                      {!isReferralRewardsLoading
+
+                      {totalReferralRewards && <>
+                        {!isReferralRewardsLoading
                         ? parseFloat(
                             ethers.utils.formatEther(
                               totalReferralRewards.toString()
                             )
                           ).toFixed(2)
                         : "0.00"}{" "}
+                      </>}
+                      
                       FXST
                     </h4>
                   </p>
