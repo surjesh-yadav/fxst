@@ -339,12 +339,15 @@ const Deshbord = () => {
                       <img src={greenarrow} alt="puricon" />
                     </span>
                   </p>
-                  <h4>
+                  <h4> {totalInvested ? <>
+
                     {!istotalInvestedLoading ? (
                       <div>{totalInvested / 1000000000000000000} FXST</div>
                     ) : (
                       "0.00"
                     )}
+                  </> : <h4>0.00</h4>}
+                   
                   </h4>
                 </div>
                 <div className="balance_info">
