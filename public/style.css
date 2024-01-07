@@ -1268,6 +1268,10 @@ html body{
   height: 343px !important;
 }
 
+.col-lg-5 .first-card.second_top_card{
+   height: 244px !important;
+}
+
 }
 
 .toast-message_custom{
