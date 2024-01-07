@@ -122,6 +122,9 @@ div.content {
     height: auto;
     position: relative;
   }
+  .second_top_card {
+    height: 235px !important;
+}
 
   .sidebar a {
     float: left;
@@ -1248,3 +1251,28 @@ html body{
     width: 100px;
     border-radius: 6px;
  }
+
+
+ @media screen and (max-width: 985px) {
+  .second_top_card {
+    height: 235px !important;
+}
+
+.first-card.second_top_card .stake-FXST-button
+  {
+    margin-left: 18px !important;
+    margin-bottom: 10px;
+
+}
+.refarinfo4.first-card {
+  height: 343px !important;
+}
+
+}
+
+.toast-message_custom{
+  background-color: #877028 !important;
+  color: white !important;
+  text-wrap: nowrap;
+  font-size: 14px;
+}
