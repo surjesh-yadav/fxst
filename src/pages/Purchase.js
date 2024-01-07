@@ -127,7 +127,7 @@ const originalDate = new Date()
                         <td className="date_table">{rowData[2]}</td>
                         <td>{rowData[0]}</td>
                         <td>{rowData[1]} Days</td>
-                        <td>{rowData[3]}</td>
+                        <td className="date_table">{rowData[3]}</td>
                         <td>
                           <button
                             onClick={()=> withdrawToken(index)}
