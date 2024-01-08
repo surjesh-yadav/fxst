@@ -44,7 +44,7 @@ const Deshbord = () => {
   //read functions
   const address = useAddress();
   const { contract } = useContract(
-    "0x59a0A965F6400d493d440c339601E64a19fe409A"
+    "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
   );
   const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
     useTokenBalance(contract, address);
@@ -100,7 +100,7 @@ const Deshbord = () => {
   const approveTokens = async () => {
     try {
       setApproveTokensLoading(true);
-      let spender = "0x59a0A965F6400d493d440c339601E64a19fe409A"; //contract address
+      let spender = "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"; //contract address
       let approveAmount = ethers.utils.parseEther(approveAmt);
       const data = await approve({ args: [spender, approveAmount] });
       console.info("contract call successs", data);

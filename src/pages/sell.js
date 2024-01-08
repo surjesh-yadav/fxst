@@ -12,7 +12,7 @@ const Sell = () => {
   const address = useAddress();
   const sdk = useSDK();
 
-  const { contract } = useContract("0x59a0A965F6400d493d440c339601E64a19fe409A");
+  const { contract } = useContract("0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3");
   const { data: parent, isLoading: isParentLoading } = useContractRead(contract, "parent", [address]);
   const { data: userCounts, isLoading: isUserCountsLoading } = useContractRead(contract, "UserCounts", [address]);
 
@@ -21,7 +21,7 @@ const Sell = () => {
     if (address !== undefined) {
       try {
         setLoading(true);
-        const contract1 = await sdk.getContract("0x59a0A965F6400d493d440c339601E64a19fe409A");
+        const contract1 = await sdk.getContract("0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3");
         let len = Number(userCounts.SellCount.toString());
         let details = [];
 

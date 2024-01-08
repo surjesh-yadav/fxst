@@ -23,7 +23,7 @@ const Purchase = () => {
   const [isDatePassed, setIsDatePassed] = useState(false);
 
   const { contract } = useContract(
-    "0x59a0A965F6400d493d440c339601E64a19fe409A"
+    "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
   );
 
   const { data: StakingCount, isLoading: isUserStakingCountLoading } =
@@ -36,7 +36,7 @@ const Purchase = () => {
     try {
       setLoading(true);
       const contract1 = await sdk.getContract(
-        "0x59a0A965F6400d493d440c339601E64a19fe409A"
+        "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
       );
       let len = Number(StakingCount.toString());
       let details = [];
@@ -94,9 +94,27 @@ const Purchase = () => {
   };
 
 const [withdrawDate, setWithdrawDate] = useState("")
+const [currentDateTime, setCurrentDateTime] = useState('');
 
-const originalDate = new Date()
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      const formattedDateTime = formatDate(now);
+      setCurrentDateTime(formattedDateTime);
+    }, 1000); // Update every second
+    return () => clearInterval(intervalId);
+  }, []);
+  const formatDate = (date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+  };
  
+
   return (
     <React.Fragment>
       <div className="content">
@@ -129,11 +147,20 @@ const originalDate = new Date()
                         <td>{rowData[1]} Days</td>
                         <td className="date_table">{rowData[3]}</td>
                         <td>
-                          <button
+
+
+                        { currentDateTime > rowData[3] ? <button
                             onClick={()=> withdrawToken(index)}
                             className="button_withdrow"
-                          >  {new Date() > new Date(rowData[3]) ? "Withdrow" : "Locked" }
-                          </button>
+                          > Withdrow
+                          </button> :   <button disabled
+                            onClick={()=> withdrawToken(index)}
+                            className="button_withdrow"
+                          > Locked
+                          </button> }
+                          
+
+                        
                         </td>
                       </tr>
                     ))
