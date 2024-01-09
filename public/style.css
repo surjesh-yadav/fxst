@@ -1305,3 +1305,8 @@ html body{
 iframe{
   display: none !important;
 }
+
+
+th, td, tr {
+  border: none !important;
+}

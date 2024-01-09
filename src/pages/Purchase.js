@@ -15,8 +15,10 @@ import moment from "moment";
 import "./page.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../components/Loading";
 
 const Purchase = () => {
+  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const address = useAddress();
@@ -32,20 +34,21 @@ const Purchase = () => {
   const { data: StakingCount, isLoading: isUserStakingCountLoading } =
     useContractRead(contract, "userStakingCount", [address]);
 
-  // const { data: userStakes, isLoading: isUserStakingLoading } =
-  // useContractRead(contract, "userStaking", [address]);
 
   const [withdrawData, setWithDrawData] = useState("");
   const [tableDataLoading, setTableDataLoading] = useState(true);
-  const getData = async () => {
+
+
+  const getData = async (WithdrawCheck) => {
     try {
+      WithdrawCheck()
+      setTableDataLoading(true)
       setLoading(true);
       const contract1 = await sdk.getContract(
         "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
       );
       let len = Number(StakingCount.toString());
       let details = [];
-
       for (let i = 0; i < len; i++) {
         const data = await contract1.call("userStaking", [address, i]);
         let amount = parseFloat(
@@ -66,7 +69,7 @@ const Purchase = () => {
       setTableDataLoading(false);
       setData(details);
 
-      //console.log("Stake Count Data", details);
+      console.log("Stake Count Data", details);
     } catch (error) {
       setTableDataLoading(false);
       //console.log(error);
@@ -77,50 +80,42 @@ const Purchase = () => {
 
   const WithdrawCheck = async () => {
     let len = Number(StakingCount.toString());
+    let promises = [];
     for (let i = 0; i < len; i++) {
-      const contract1 = await sdk.getContract(
-        "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
+      promises.push(
+        sdk.getContract("0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3")
+          .then((contract1) => contract1.call("withdrawalCompleted", [address, i]))
       );
-      const data = await contract1.call("withdrawalCompleted", [address, i]);
-      setWithDrawData(data);
     }
+    // Wait for all promises to resolve
+    const result = await Promise.all(promises);
+    // Set the accumulated data after all promises are resolved
+     setWithDrawData(result);
   };
 
   useEffect(() => {
-    WithdrawCheck();
-  }, []);
-
-  useEffect(() => {
     if (!isUserStakingCountLoading) {
-      getData();
+      getData(WithdrawCheck);
     }
   }, [isUserStakingCountLoading, address]);
 
   const { mutateAsync: withdraw, isLoading: isWithdrawTokensLoading } =
     useContractWrite(contract, "withdraw");
 
-  const checkWithdraw = async (index) => {
-    try {
-      console.info("contract call successs", data);
-      toast.success("Tokens Has Been Successfully Withdrawn", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    } catch (err) {
-      toast.error("Tokens Withdraw Failed", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      console.error("contract call failure", err);
-    }
-  };
+ 
 
   const withdrawToken = async (index) => {
+    setWithdrawTokensLoading(true)
     try {
       const data = await withdraw({ args: [index] });
       console.info("contract call successs", data);
+      setWithdrawTokensLoading(false)
       toast.success("Tokens Has Been Successfully Withdrawn", {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (err) {
+      setWithdrawTokensLoading(false)
+
       toast.error("Tokens Withdraw Failed", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -150,6 +145,8 @@ const Purchase = () => {
 
   return (
     <React.Fragment>
+    <ToastContainer/>
+    {WithdrawTokensloading && <Loading/>}
       <div className="content">
         <div className="container mt-5">
           <div className="parchage_main">
