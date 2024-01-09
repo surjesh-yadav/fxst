@@ -183,21 +183,19 @@ const Deshbord = () => {
         const data = await stakeTokens({
           args: [usdtAmt, durationValue, ref],
         });
-        console.info("contract call success", data);
+        setBuyTokenLoading(false);
         toast.success("Tokens Bought Successfully", {
           position: toast.POSITION.TOP_CENTER,
           className: "toast-message_custom_success",
         });
       } catch (err) {
+        setBuyTokenLoading(false);
         toast.error("Something Went Wrong", {
           position: toast.POSITION.TOP_CENTER,
           className: "toast-message_custom_error",
         });
-      
-      } finally {
-        setUSDTAmt("");
-        setBuyTokenLoading(false);
       }
+
     } else {
       toast.error("Please Enter a Valid Referral Address", {
         position: toast.POSITION.TOP_CENTER,

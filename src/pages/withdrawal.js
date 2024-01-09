@@ -30,7 +30,6 @@ const Withdrawal = () => {
         let amount = parseFloat(ethers.utils.formatUnits(data.amount.toString())).toFixed(2);
         let currRate = parseFloat(ethers.utils.formatUnits(data.currentRate.toString())).toFixed(7);
         let date = moment.unix(data.dateTime.toString()).format("DD-MM-YYYY HH:mm:ss");
-
         let Data = [amount, currRate, date];
         details.push(Data);
 
