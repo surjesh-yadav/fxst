@@ -39,7 +39,7 @@ const Sell = () => {
 
         }
         setData(details);
-        console.log(data);
+        
       } catch (error) {
         console.log(error);
       } finally {

@@ -43,7 +43,7 @@ const Purchase = () => {
 
       for (let i = 0; i < len; i++) {
         const data = await contract1.call("userStaking", [address, i]);
-        console.log(data, "helloo");
+     
         let amount = parseFloat(
           ethers.utils.formatUnits(data.stakedAmount.toString())
         ).toFixed(2);
@@ -158,9 +158,6 @@ const [currentDateTime, setCurrentDateTime] = useState('');
                             className="button_withdrow"
                           > Locked
                           </button> }
-                          
-
-                        
                         </td>
                       </tr>
                     ))

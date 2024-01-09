@@ -50,7 +50,7 @@ const Referral = () => {
         refData.push(rowData);
 
       }
-      console.log("ref fdta : ", refData);
+     
       setData(refData);
     } catch (error) {
       console.log(error);
@@ -89,7 +89,7 @@ const Referral = () => {
         )
         revAmt = parseFloat(ethers.utils.formatEther(revAmt.toString())).toFixed(2);
 
-        console.log("diff add");
+      
         refRowData.push(directChilds[i]);
         refRowData.push(invAmt);
         refRowData.push(revAmt);

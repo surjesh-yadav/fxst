@@ -1301,3 +1301,7 @@ html body{
 .date_table{
   text-wrap: nowrap !important;
 }
+
+iframe{
+  display: none !important;
+}

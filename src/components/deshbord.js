@@ -172,18 +172,18 @@ const Deshbord = () => {
     [ref]
   );
 
-  console.log(userValid)
+
 
   //stake Token
   const stakeToken = async () => {
     if (userValid == true) {
-      setBuyTokenLoading(true);
       try {
+        setBuyTokenLoading(true);
         let usdtAmt = ethers.utils.parseEther(amountValue);
         const data = await stakeTokens({
           args: [usdtAmt, durationValue, ref],
         });
-        console.info("contract call successs", data);
+        console.info("contract call success", data);
         toast.success("Tokens Bought Successfully", {
           position: toast.POSITION.TOP_CENTER,
           className: "toast-message_custom_success",
@@ -193,7 +193,7 @@ const Deshbord = () => {
           position: toast.POSITION.TOP_CENTER,
           className: "toast-message_custom_error",
         });
-        console.error("contract call failure", err.Reason);
+      
       } finally {
         setUSDTAmt("");
         setBuyTokenLoading(false);
@@ -205,6 +205,7 @@ const Deshbord = () => {
       });
     }
   };
+
   const handleApproveTokensValue = (event) => {
     setApproveAmt(event.target.value);
   };
