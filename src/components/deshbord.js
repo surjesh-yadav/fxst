@@ -38,6 +38,7 @@ const Deshbord = () => {
   const [tokenPriceLive, setTokenPriceLive] = useState(null);
   const [amountValue, setAmountValue] = useState("");
   const [durationValue, setDurationValue] = useState("");
+  const [currencyValue, setCurrencyValue] = useState("")
 
   const isValidUSDTamount = Number(amountValue) >= 100 || amountValue == "";
 
@@ -157,6 +158,10 @@ const Deshbord = () => {
     setDurationValue(event.target.value);
   };
 
+  const handleCurrencyChange = (event) => {
+    setCurrencyValue(event.target.value);
+  };
+
   // buyTokens
   const { mutateAsync: stakeTokens, isLoading: isBuyTokensLoading } =
     useContractWrite(contract, "stakeTokens");
@@ -247,6 +252,17 @@ const Deshbord = () => {
                       </p>
                     )}
                     <form onSubmit={handleFormSubmit}>
+                    <div className="purch desktop_button_share">
+                        <select
+                          value={currencyValue}
+                          onChange={handleCurrencyChange}
+                          placeholder="Enter amount in USDT"
+                        >
+                          <option>Select Currency</option>
+                          <option>FXST</option>
+                          <option>USDT</option>
+                        </select>
+                      </div>
                       <div className="purch desktop_button_share">
                         <input
                           value={amountValue}

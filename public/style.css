@@ -1169,9 +1169,10 @@ html body{
   font-weight: bold;
 }
 
-.refarinfo4.first-card{
-  height: 330px;
+.refarinfo3.refarinfo4.first-card{
+  padding-bottom: 10px !important;
 }
+
 
 .purch.stake-FXST-button{
   margin-top: 19px!important;
@@ -1265,7 +1266,7 @@ html body{
 
 }
 .refarinfo4.first-card {
-  height: 343px !important;
+ padding: 10px;
 }
 
 .col-lg-5 .first-card.second_top_card{
