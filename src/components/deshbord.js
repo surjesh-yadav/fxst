@@ -5,7 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import pancake from '../image/sidebar-icon/pancake.svg'
 import history from '../image/sidebar-icon/history.svg'
-
+import YouTube from 'react-youtube';
 import { useEffect, useState, useRef } from "react";
 import victor from "../image/APROX.svg";
 import widthdrow from "../image/widthdrow.png";
@@ -45,6 +45,14 @@ const Deshbord = () => {
 
   const isValidUSDTamount = Number(amountValue) >= 100 || amountValue == "";
 
+  const videoId = 'qpE-_UvCstY';
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 1,
+    },
+  };
   //read functions
   const address = useAddress();
   const { contract } = useContract(
@@ -354,6 +362,8 @@ console.log()
     // Note: Months are 0-indexed in JavaScript, so we subtract 1 from the month
     return new Date(year, month - 1, day, hours, minutes, seconds);
   }
+
+  const link = "https://www.youtube.com/watch?v=qpE-_UvCstY"
   
   return (
     <>
@@ -732,6 +742,16 @@ console.log()
                 </div>
               </div>
             </div>
+          </div>
+          <div className="youtube_video">
+          <iframe
+            width="100%"
+            height="500"
+            src={link.replace('watch?v=', 'embed/')}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
           </div>
         </div>
       </div>

@@ -1386,4 +1386,15 @@ button.Pancakeswap_button img{
 
 .approve_desc_right{
   line-height: 1.4;
+
 }
+
+.youtube_video  iframe{
+    display: block !important;
+  }
+
+
+  .youtube_video{
+    margin: 20px;
+    border-radius: 10px;
+  }
