@@ -17,7 +17,7 @@ const Referral = () => {
   const getData = async () => {
     try {
       setLoading(true);
-      const contract1 = await sdk.getContract("0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3");
+      const contract1 = await sdk.getContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A");
       const directChilds = await contract1.call(
         "showAllDirectChild",
         [address],
@@ -62,7 +62,7 @@ const Referral = () => {
   const getRefData = async (add) => {
     try {
       setLoading(true);
-      const contract1 = await sdk.getContract("0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3");
+      const contract1 = await sdk.getContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A");
       const directChilds = await contract1.call(
         "showAllDirectChild",
         [add],

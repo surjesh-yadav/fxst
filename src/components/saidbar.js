@@ -8,6 +8,7 @@ import whitepaper from '../image/sidebar-icon/whitepaper.svg'
 import refer from '../image/sidebar-icon/refer.svg'
 import binance from '../image/binance-logo.svg'
 import homepage from '../image/sidebar-icon/homepage.svg'
+import pancake from '../image/sidebar-icon/pancake.svg'
 import audit from '../image/sidebar-icon/audit.svg'
 import { useState } from 'react';
 // import hlpicon from '../image/material-symbols_help-outline (2).png'
@@ -115,7 +116,7 @@ const Saidbar = () => {
 
                                     <a
                                        target='_blank'
-                                        href="https://bscscan.com/address/0xa99600043e84181a9d4137ad1cefb8cfe9138674"
+                                        href="https://bscscan.com/address/0xb810550336560A6E0f3E3EA3A7515AbB341E3e46"
                                        
                                     >
                                         <img width={"20"} src={binance} alt="rewicon" /> Contract
@@ -123,8 +124,13 @@ const Saidbar = () => {
 
                                     <a
                                     target='_blank'
-                                      href="https://fxst.org//">
+                                      href="https://fxst.org/">
                                       <img width={"20"} src={homepage} alt="rewicon" /> Homepage
+                                    </a>
+                                    <a
+                                    target='_blank'
+                                      href="https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0xb810550336560A6E0f3E3EA3A7515AbB341E3e46&chainId=56">
+                                      <img width={"20"} src={pancake} alt="rewicon" /> Buy FXST
                                     </a>
 
                                    

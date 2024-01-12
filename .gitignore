@@ -1,24 +1,94 @@
 # Dependency directories
-/node_modules
+node_modules/
 
-# Production build
-/build
+# Compiled files
+build/
+dist/
 
-# Temporary files
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Editor files
+.vscode/
+.idea/
+
+# OS generated files
 .DS_Store
 Thumbs.db
 
-# Environment files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# User-specific files
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.komodotools/
 
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Dependency lock files
+yarn.lock
+package-lock.json
+
+# Coverage directory
+coverage/
+
+# .nyc_output directory
+.nyc_output/
+
+# Jest snapshot directory
+__snapshots__/
+
+# Next.js build directory
+.next/
+
+# Storybook build directory
+storybook-static/
+
+# TypeScript build output
+dist/
+
+# Yarn integrity file
+.yarn-integrity
+
+# IDE (e.g., WebStorm) configuration files
+.idea/
+
+# macOS Finder metadata
+.metadata/
+
+# Jupyter Notebook temporary files
+.ipynb_checkpoints/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Node.js Debug folder
+.vscode/
+
+# ESLint
+.eslintcache
+
+# Node.js Express debug logs
+logs/
+*.log
+
+# Svelte.js
+public/build/

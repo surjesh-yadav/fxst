@@ -28,16 +28,14 @@ const Purchase = () => {
   const [isDatePassed, setIsDatePassed] = useState(false);
 
   const { contract } = useContract(
-    "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
+    "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
   );
 
   const { data: StakingCount, isLoading: isUserStakingCountLoading } =
     useContractRead(contract, "userStakingCount", [address]);
-
-
+    
   const [withdrawData, setWithDrawData] = useState("");
   const [tableDataLoading, setTableDataLoading] = useState(true);
-
 
   const getData = async (WithdrawCheck) => {
     try {
@@ -45,15 +43,13 @@ const Purchase = () => {
       setTableDataLoading(true)
       setLoading(true);
       const contract1 = await sdk.getContract(
-        "0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3"
+        "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
       );
       let len = Number(StakingCount.toString());
       let details = [];
       for (let i = 0; i < len; i++) {
         const data = await contract1.call("userStaking", [address, i]);
-        let amount = parseFloat(
-          ethers.utils.formatUnits(data.stakedAmount.toString())
-        ).toFixed(2);
+        let amount = (data.stakedAmount.toString() / 1000000).toFixed(2);
         let duration = data.stakingDuration.toString();
         let startDate = moment
           .unix(data.startDate.toString())
@@ -69,7 +65,7 @@ const Purchase = () => {
       setTableDataLoading(false);
       setData(details);
 
-      console.log("Stake Count Data", details);
+      //console.log("Stake Count Data", details);
     } catch (error) {
       setTableDataLoading(false);
       //console.log(error);
@@ -83,7 +79,7 @@ const Purchase = () => {
     let promises = [];
     for (let i = 0; i < len; i++) {
       promises.push(
-        sdk.getContract("0xA86906b68B84C09Fa313D53a410Bd9bA88308DA3")
+        sdk.getContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A")
           .then((contract1) => contract1.call("withdrawalCompleted", [address, i]))
       );
     }
@@ -143,6 +139,21 @@ const Purchase = () => {
     return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
   };
 
+
+  
+  function parseCustomDate(dateString) {
+    const [datePart, timePart] = dateString.split(' ');
+    const [day, month, year] = datePart.split('-');
+    const [hours, minutes, seconds] = timePart.split(':');
+  
+    // Note: Months are 0-indexed in JavaScript, so we subtract 1 from the month
+    return new Date(year, month - 1, day, hours, minutes, seconds);
+  }
+  
+
+
+
+
   return (
     <React.Fragment>
     <ToastContainer/>
@@ -164,7 +175,7 @@ const Purchase = () => {
                     <th>Amount</th>
                     <th>Duration</th>
                     <th>End Date</th>
-                    <th>Withdrow</th>
+                    <th>Withdraw</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,7 +192,7 @@ const Purchase = () => {
                             <td>{rowData[1]} Days</td>
                             <td className="date_table">{rowData[3]}</td>
                             <td>
-                              {currentDateTime > rowData[3] ? (
+                              {new Date() > parseCustomDate(rowData[3])? (
                                 <button
                                   onClick={() => withdrawToken(index)}
                                   className="button_withdrow"
