@@ -462,7 +462,7 @@ console.log()
                         <img src={pancake}/>
                          Buy On Pancakeswap
                       </button>
-                      <button onClick={handleBuyPlan}> Buy</button>
+                     
                       </a>
                   </div>
                 </div>
