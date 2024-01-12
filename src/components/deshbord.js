@@ -38,7 +38,7 @@ const Deshbord = () => {
   const [referralCode, setReferralCode] = useState("");
   const [BTCprice, setBTCPrice] = useState("");
   const [BNBprice, setBNBPrice] = useState("");
-  const [ReferralValue, setRefarralValue] = useState("0x35d037D55d39b5840FFE1De32a7DEfb4E2F4CeB5");
+  const [ReferralValue, setRefarralValue] = useState("0x2849897F5f7D3a1088Ecae416CC6fBEf3Dd05D37");
   const [tokenPriceLive, setTokenPriceLive] = useState(null);
   const [amountValue, setAmountValue] = useState("");
   const [durationValue, setDurationValue] = useState("");
@@ -176,14 +176,29 @@ const Deshbord = () => {
     [ref]
   );
 
+
   //stake Token
-  const stakeToken = async () => {
+  const stakeToken = async (event) => {
+    console.log(ref)
+    event.preventDefault()
     if (userValid == true) {
       try {
         setBuyTokenLoading(true);
         let usdtAmt = amountValue * 1000000;
         const data = await stakeTokens({
           args: [usdtAmt, durationValue, ref],
+        });
+         await fetch("http://localhost:3200/v1/plan-buy", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_wallet: address.toLowerCase(),
+            parent_wallet_id: ReferralValue.toLowerCase(),
+            buyed_plan: [{ amount: "100" }],
+            user_id: address.toLowerCase(),
+          }),
         });
         setBuyTokenLoading(false);
         toast.success("Tokens Bought Successfully", {
@@ -331,46 +346,6 @@ useEffect(() => {
 console.log(currentDateTime > "11-02-2024 00:50:17")
 console.log()
 
-  const handleBuyPlan = async (event) => {
-    console.log(ReferralValue);
-    event.preventDefault();
-    console.log("Clicked");
-    try {
-      console.log("Inside try block");
-      const response = await fetch("http://localhost:3200/v1/plan-buy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_wallet: address.toLowerCase(),
-          parent_wallet_id: ReferralValue.toLowerCase(),
-          buyed_plan: [{ amount: "100" }],
-          user_id: address.toLowerCase(),
-        }),
-      });
-      const data = await response.json();
-      toast.success("User tree is Successfully set", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      console.log(data);
-    } catch (error) {
-      toast.success("User tree is failed", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      console.error("Error fetching user details:", error);
-    }
-  };
-
-  const handleFormSubmit = (event, handleBuyPlan) => {
-    // handleBuyPlan()
-    event.preventDefault();
-    stakeToken();
-  };
-
-
-
-
   function parseCustomDate(dateString) {
     const [datePart, timePart] = dateString.split(' ');
     const [day, month, year] = datePart.split('-');
@@ -380,7 +355,6 @@ console.log()
     return new Date(year, month - 1, day, hours, minutes, seconds);
   }
   
-
   return (
     <>
       {BuyTokenLoading && <Loading />}
@@ -462,8 +436,7 @@ console.log()
                         <img src={pancake}/>
                          Buy On Pancakeswap
                       </button>
-                     
-                      </a>
+                       </a>
                   </div>
                 </div>
                 <div className="col-lg-12 mb-3 pl-0 pr-0 pr-md-0">
@@ -517,7 +490,7 @@ console.log()
                         Minimum 100
                       </p>
                     )}
-                    <form onSubmit={handleFormSubmit}>
+                    <form onSubmit={stakeToken}>
                       <div className="purch desktop_button_share">
                         <input
                           value={amountValue}
@@ -555,7 +528,6 @@ console.log()
                       </div>
 
                       <button
-                        // onClick={handleBuyPlan}
                         type="submit"
                         disabled={amountValue < 100}
                         className="purch stake-FXST-button"

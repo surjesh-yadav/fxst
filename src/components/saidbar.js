@@ -63,13 +63,13 @@ const Saidbar = () => {
                                         <img width={"20"} src={buy_token} alt="rewicon" /> Staking
                                     </Link>
 
-                                    {/* <Link
-                                        to="/sell"
+                                    <Link
+                                        to="/referral"
                                         className={location.pathname === '/sell' ? 'active' : ''}
                                         onClick={() => handleLinkClick('/sell')}
                                     >
-                                        <img width={"20"} src={sell_token} alt="rewicon" /> Sell Tokens
-                                    </Link> */}
+                                        <img width={"20"} src={refer} alt="rewicon" /> Referral
+                                    </Link>
 
                                     {/* <Link
                                         to="/earning"
