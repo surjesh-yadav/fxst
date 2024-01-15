@@ -574,7 +574,7 @@ console.log()
                       <div className="col-lg-4 pl-0">
                         <button
                           onClick={approveTokens}
-                          className="purch stake-FXST-button"
+                          className="purch stake-FXST-button approve_button_right"
                         >
                           Approve
                         </button>
