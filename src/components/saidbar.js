@@ -116,7 +116,7 @@ const Saidbar = () => {
 
                                     <a
                                        target='_blank'
-                                        href="https://bscscan.com/address/0xb810550336560A6E0f3E3EA3A7515AbB341E3e46"
+                                        href="https://bscscan.com/address/0xA99600043E84181A9d4137aD1cefB8cfE9138674"
                                        
                                     >
                                         <img width={"20"} src={binance} alt="rewicon" /> Contract
@@ -129,7 +129,7 @@ const Saidbar = () => {
                                     </a>
                                     <a
                                     target='_blank'
-                                      href="https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0xb810550336560A6E0f3E3EA3A7515AbB341E3e46&chainId=56">
+                                      href="https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0xA99600043E84181A9d4137aD1cefB8cfE9138674&chainId=56">
                                       <img width={"20"} src={pancake} alt="rewicon" /> Buy FXST
                                     </a>
 

@@ -11,14 +11,14 @@ const Withdrawal = () => {
   const address = useAddress();
   const sdk = useSDK();
 
-  const { contract } = useContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A");
+  const { contract } = useContract("0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52");
   const { data: parent, isLoading: isParentLoading } = useContractRead(contract, "parent", [address]);
   const { data: userCounts, isLoading: isUserCountsLoading } = useContractRead(contract, "UserCounts", [address]);
 
   const getData = async () => {
     try {
       setLoading(true);
-      const contract1 = await sdk.getContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A");
+      const contract1 = await sdk.getContract("0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52");
       let len = Number(userCounts.withdrawCount.toString());
       let details = [];
 

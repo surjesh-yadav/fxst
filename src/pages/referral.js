@@ -18,7 +18,7 @@ const Referral = () => {
     try {
       setLoading(true);
       const contract1 = await sdk.getContract(
-        "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
+        "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"
       );
       const directChilds = await contract1.call("showAllDirectChild", [
         address,
@@ -60,7 +60,7 @@ const Referral = () => {
     try {
       setLoading(true);
       const contract1 = await sdk.getContract(
-        "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
+        "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"
       );
       const directChilds = await contract1.call("showAllDirectChild", [add]);
       let oneRefData = [];
@@ -109,7 +109,7 @@ const Referral = () => {
     const fetchData = async () => {
       console.log(address)
       try {
-        const response = await fetch(`http://localhost:3200/get/chain?address=${address.toLowerCase()}`);
+        const response = await fetch(`https://backend.fxst.org/get/chain?address=${address.toLowerCase()}`);
         const jsonData = await response.json();
         setTableData(jsonData.data.details);
       } catch (error) {
@@ -148,7 +148,7 @@ const Referral = () => {
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{rowData.user_id}</td>
-                        <td>{rowData.amount}.00</td>  
+                        <td>{rowData.amount/1000000}.00 FXST</td>  
                         <td>{rowData.level}</td>
                         
                       </tr>

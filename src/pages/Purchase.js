@@ -28,7 +28,7 @@ const Purchase = () => {
   const [isDatePassed, setIsDatePassed] = useState(false);
 
   const { contract } = useContract(
-    "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
+    "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"
   );
 
   const { data: StakingCount, isLoading: isUserStakingCountLoading } =
@@ -43,7 +43,7 @@ const Purchase = () => {
       setTableDataLoading(true)
       setLoading(true);
       const contract1 = await sdk.getContract(
-        "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
+        "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"
       );
       let len = Number(StakingCount.toString());
       let details = [];
@@ -79,7 +79,7 @@ const Purchase = () => {
     let promises = [];
     for (let i = 0; i < len; i++) {
       promises.push(
-        sdk.getContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A")
+        sdk.getContract("0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52")
           .then((contract1) => contract1.call("withdrawalCompleted", [address, i]))
       );
     }

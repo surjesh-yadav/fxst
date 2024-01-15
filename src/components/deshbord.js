@@ -38,7 +38,7 @@ const Deshbord = () => {
   const [referralCode, setReferralCode] = useState("");
   const [BTCprice, setBTCPrice] = useState("");
   const [BNBprice, setBNBPrice] = useState("");
-  const [ReferralValue, setRefarralValue] = useState("0x2849897F5f7D3a1088Ecae416CC6fBEf3Dd05D37");
+  const [ReferralValue, setRefarralValue] = useState("0x92e784A642a2d1467DEAC09a573d74a1eC8d1801");
   const [tokenPriceLive, setTokenPriceLive] = useState(null);
   const [amountValue, setAmountValue] = useState("");
   const [durationValue, setDurationValue] = useState("");
@@ -56,12 +56,12 @@ const Deshbord = () => {
   //read functions
   const address = useAddress();
   const { contract } = useContract(
-    "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
+    "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"
   );
   const { data: cunWalletBal, isLoading: isCunWalletBalLoading } =
     useTokenBalance(contract, address);
   const { contract: USDTContract } = useContract(
-    "0xb810550336560A6E0f3E3EA3A7515AbB341E3e46"
+    "0xA99600043E84181A9d4137aD1cefB8cfE9138674"
   );
   const { data: walletBal, isLoading: walletBalLoading } = useTokenBalance(
     USDTContract,
@@ -112,8 +112,8 @@ const Deshbord = () => {
   const approveTokens = async () => {
     try {
       setApproveTokensLoading(true);
-      let spender = "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"; //contract address
-      let approveAmount = ethers.utils.parseEther(approveAmt);
+      let spender = "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"; //contract address
+      let approveAmount = (approveAmt*1000000);
       const data = await approve({ args: [spender, approveAmount] });
       console.info("contract call successs", data);
       setApproveTokensLoading(false);
@@ -196,7 +196,7 @@ const Deshbord = () => {
         const data = await stakeTokens({
           args: [usdtAmt, durationValue, ref],
         });
-         await fetch("http://localhost:3200/v1/plan-buy", {
+         await fetch("https://backend.fxst.org/v1/plan-buy", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -204,7 +204,7 @@ const Deshbord = () => {
           body: JSON.stringify({
             user_wallet: address.toLowerCase(),
             parent_wallet_id: ReferralValue.toLowerCase(),
-            buyed_plan: [{ amount: "100" }],
+            buyed_plan: [{ amount: usdtAmt }],
             user_id: address.toLowerCase(),
           }),
         });
@@ -252,7 +252,7 @@ const Deshbord = () => {
       setTableDataLoading(true);
       setLoading(true);
       const contract1 = await sdk.getContract(
-        "0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A"
+        "0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52"
       );
       let len = Number(StakingCount.toString());
       let details = [];
@@ -289,7 +289,7 @@ const Deshbord = () => {
     for (let i = 0; i < len; i++) {
       promises.push(
         sdk
-          .getContract("0xC01d18Faf82A96029E03dC390cbCdEC8c8d5720A")
+          .getContract("0xB8A957238a0A49b763F3f9752c7B1Cba4544eC52")
           .then((contract1) =>
             contract1.call("withdrawalCompleted", [address, i])
           )
@@ -437,7 +437,7 @@ console.log()
                     <h3 className="approve_desc lower_card_price">
                     ${tokenPriceLive ? tokenPriceLive : "0.00" }
                     </h3>
-                    <a target="_blank" href="https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0xb810550336560A6E0f3E3EA3A7515AbB341E3e46&chainId=56">
+                    <a target="_blank" href="https://pancakeswap.finance/swap?inputCurrency=0x55d398326f99059fF775485246999027B3197955&outputCurrency=0xA99600043E84181A9d4137aD1cefB8cfE9138674&chainId=56">
                     <button
                         
                         // onClick={() => withdrawToken(index)}
@@ -627,11 +627,7 @@ console.log()
                     <h4>
                       {" "}
                       {!isReferralRewardsLoading && totalReferralRewards
-                        ? parseFloat(
-                            ethers.utils.formatEther(
-                              totalReferralRewards.toString()
-                            )
-                          ).toFixed(2)
+                        ? (totalReferralRewards/1000000)
                         : "0.00"}{" "}
                       FXST
                     </h4>
@@ -650,9 +646,7 @@ console.log()
                     {reward && (
                       <>
                         {!isrewardLoading
-                          ? parseFloat(
-                              ethers.utils.formatEther(reward.toString())
-                            ).toFixed(2)
+                          ? (reward/1000000)
                           : "0.00"}{" "}
                       </>
                     )}
@@ -737,7 +731,7 @@ console.log()
                     </span>
                   </p>
                   <h4>
-                    {totalRewards ? totalRewards / 1000000000000000000 : 0.0}
+                    {totalRewards ? totalRewards / 1000000 : 0.0}
                   </h4>
                 </div>
               </div>
