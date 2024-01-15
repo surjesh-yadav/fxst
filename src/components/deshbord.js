@@ -509,6 +509,7 @@ console.log()
                           placeholder="Enter amount in FXST"
                         />
                       </div>
+                      <div className="duration_main_box">
                       <div className="purch desktop_button_share">
                         <select
                           value={durationValue}
@@ -521,6 +522,10 @@ console.log()
                           <option>60</option>
                           <option>75</option>
                         </select>
+                      </div>
+                      <div className="purch desktop_button_share per_monthly">
+                       {durationValue == "30" ?  "9% Monthly" : durationValue ==  "45" ? "18% Monthly" : durationValue == "60" ? "27% Monthly" : durationValue == "75" ? "36% Monthly" : "Returns"}
+                      </div>
                       </div>
                       <div className="purch desktop_button_share">
                         <input

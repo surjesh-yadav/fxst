@@ -1172,10 +1172,7 @@ html body{
 .refarinfo4.first-card{
   height: 330px;
 }
-
-.purch.stake-FXST-button{
-  margin-top: 19px!important;
-}
+ 
 
 .stake-FXST-button{
   background: linear-gradient(90deg, rgba(134,109,20,1) 35%, rgba(252,216,0,1) 100%) !important;
@@ -1397,4 +1394,15 @@ button.Pancakeswap_button img{
   .youtube_video{
     margin: 20px;
     border-radius: 10px;
+  }
+
+  .duration_main_box{
+    display: flex;
+    gap: 11px;
+    margin: 0px 16px;
+  }
+
+  .per_monthly{
+    padding: 11px;
+    width: 52%;
   }
